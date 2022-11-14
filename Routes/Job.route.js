@@ -31,4 +31,16 @@ jobController.get("/", async (req, res) => {
   })
 
 
+  jobController.delete("/:id",async(req,res)=>{
+    const id= req.params.id ;
+    console.log(id)
+    try{
+      await jobModel.deleteOne({_id:id})
+     res.send({msg:"Job deleted successfully"}) 
+    }
+    catch(err){
+      console.log(err)
+    }
+  })
+
 module.exports={jobController}
