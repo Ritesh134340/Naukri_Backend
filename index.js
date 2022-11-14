@@ -6,7 +6,7 @@ const {connection}=require("./config/db")
 const {userController}=require("./Routes/User.route")
 const { jobModel } = require("./Models/Job.model");
 const { adminController } = require("./Routes/Admin.route");
-const { userModel } = require("./Models/user.model");
+// const { userModel } = require("./Models/user.model");
 
 const PORT=process.env.PORT || 8080
 
@@ -49,25 +49,25 @@ app.get("/job/:id", async (req, res) => {
 
 
 
-app.delete("/resgisteredusers/:id" , async(req,res)=>{
-  const id= req.params.id ;
-  try{
+// app.delete("/resgisteredusers/:id" , async(req,res)=>{
+//   const id= req.params.id ;
+//   try{
 
-    await userModel.deleteOne({_id:id})
+//     await userModel.deleteOne({_id:id})
   
    
-   res.send({msg:"User deleted successfully"}) 
-  }
-  catch(err){
-    console.log(err)
-  }
+//    res.send({msg:"User deleted successfully"}) 
+//   }
+//   catch(err){
+//     console.log(err)
+//   }
 
-})
+// })
 
-app.get("/registeredusers",async(req,res)=>{
-const registeredusers= await userModel.find()
-res.send(registeredusers)
-})
+// app.get("/registeredusers",async(req,res)=>{
+// const registeredusers= await userModel.find()
+// res.send(registeredusers)
+// })
 
 
 
