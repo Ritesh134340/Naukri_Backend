@@ -8,7 +8,7 @@ const userSchema = mongoose.Schema({
     work_status:{type:String,required:true ,default:"fresher"}
 }) 
 
-const userModel = mongoose.model("user" , userSchema);
+const userModel = mongoose.model("user", userSchema);
 
 module.exports={
     userModel
