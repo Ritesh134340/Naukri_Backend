@@ -15,8 +15,7 @@ jobController.get("/", async (req, res) => {
 
 
 
-  jobController.get("/job/:id", async (req, res) => {
-    console.log(req.params.id)
+  jobController.get("/:id", async (req, res) => {
     const id = req.params.id
     try{
   
