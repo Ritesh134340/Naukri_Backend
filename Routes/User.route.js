@@ -9,12 +9,12 @@ userController.post("/signup", async (req, res) => {
   const existing_user = await userModel.findOne({ email });
 
   if (existing_user) {
-    res.send({"msg":"user already exist"})
+    res.send({msg:"User already exist,try Login"})
     return;
   }
   bcrypt.hash(password, 4, async function (err, hash) {
     if (err) {
-      res.send({"msg":"signup failed ..please try again.."});
+      res.send({msg:"Something went wrong,try again later"});
     } else {
       const new_user = new userModel({
         email,
@@ -25,7 +25,7 @@ userController.post("/signup", async (req, res) => {
       });
 
       await new_user.save();
-      res.send({"msg":"signup succesfull.."});
+      res.send({msg:"Signup succesfull.."});
     }
   });
 });
@@ -45,7 +45,7 @@ userController.post("/login", async (req, res) => {
 
       bcrypt.compare(password, hashed_password, function(err, result) {
         if(err){
-          res.send({"msg" : "Something went wrong, try again later"})
+          res.send({msg : "Something went wrong, try again later"})
         }
         if(result){
           console.log(user)
@@ -61,19 +61,16 @@ userController.post("/login", async (req, res) => {
             id:id,
             token:token
            }
-          res.send({"msg": "Login successfull",document:document})
+          res.send({msg: "Login successfull",document:document})
         }
         else{
-          res.send({"msg" : "Login failed"})
+          res.send({msg : "Login failed"})
         }
       });
     }else{
-      res.send({"msg":"User not found ..please login with correct credentials.."})
+      res.send({msg:"User not found..please Signup"})
     }
 })
-
-
-
 
 module.exports = {
   userController,

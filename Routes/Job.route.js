@@ -4,13 +4,32 @@ const jobController=Router()
 
 
 jobController.get("/", async (req, res) => {
-    console.log(req.query)
-    const query = req.query
-    
+
+    try{
+
+      // let match={};
+      // if(req.query.keyword){
+      //   match.$and=[{category:new RegExp(req.query.keyword,"i")},
+      //              {title:new RegExp(req.query.keyword,"i")}    
+      // ]
+      // }
+
+      // if(req.query.year){
+      //   match.year=parseInt(req.query.year)
+      // }
+
+      // const job=await jobModel.aggregate([{$match:match}])
+      //  res.send(job)
+
+      const query = req.query
       const job = await jobModel.find(query)
-    
-    res.send(job)
-  
+       res.send(job)
+    }
+
+    catch(err){
+      res.send({msg:"Something went wrong"})
+      console.log(err)
+    } 
   })
 
 
@@ -18,7 +37,6 @@ jobController.get("/", async (req, res) => {
   jobController.get("/:id", async (req, res) => {
     const id = req.params.id
     try{
-  
       const job = await jobModel.findOne({_id:id})
     
     res.send(job)
